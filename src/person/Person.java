@@ -1,4 +1,5 @@
 package person;
+import java.util.Scanner; //for testing
 
 public class Person {
 	private String name;
@@ -56,12 +57,65 @@ public class Person {
 	public void setDni(String dni) {
 		this.dni=dni;
 	}
-	
+	//it will return an ideal weight using a formula from internet
 	public int idealWeight() {
 		return height-100-((height-150)/4);
 	}
-	
+	//it will convert to String all the data types that aren't String yet
 	public String toString() {
-		return name +Integer.toString(age)+height +weight+dni;
+		return Integer.toString(age)+Integer.toString(height) +Integer.toString(weight);
+	}
+	//this gives a default DNI value that will always be "12345678A"
+	public String dniByDefault() {
+		this.dni= "12345678A";
+		return this.dni;
+	}
+	//this will return false if the age is lower than 18 or true if it's not
+	public boolean isAdult() {
+		boolean adult = false;
+		if(this.age>=18) {
+			adult = true;
+		}
+		return adult;
+	}
+	
+	//for testing
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//create a person class object with no parameters
+		System.out.println("Person 1:");
+		Person person1 = new Person();
+		//add the information using get/set methods
+		System.out.println("Enter the name: ");
+		person1.setName(sc.next());
+		System.out.println("Now enter the age: ");
+		if(sc.hasNextInt()) {
+			person1.setAge(sc.nextInt());
+		}
+		System.out.println("First person's name is "+ person1.getName()+", who is "+person1.getAge()+" years old.");
+		//show different messages if he/she is adult or not
+		if(person1.isAdult()) {
+			System.out.println(person1.getName()+" is adult.");
+			//if it's adult we want to know his/hers id
+			System.out.println("Enter "+person1.getName()+"'s DNI:");
+			person1.setDni(sc.next());
+		}
+		else {
+			System.out.println(person1.getName()+" is not adult.");
+			//if it's not adult he/she will get the default id
+			person1.setDni(person1.dniByDefault());
+		}
+		System.out.println(person1.getName()+"'s dni is "+person1.getDni());
+		//create a person class object defining hers/his name
+		System.out.println("Person 2:");
+		Person person2 = new Person("Juan");
+		System.out.println("Second person's name is " + person2.getName()+".");
+		System.out.println("Which one will be the weight (kg) of " +person2.getName()+"?");
+		if(sc.hasNextInt())
+			person2.setWeight(sc.nextInt());
+		System.out.println("And its height (cm)?");
+		if(sc.hasNextInt())
+			person2.setHeight(sc.nextInt());
+		System.out.println("His/Hers ideal width will be "+ person2.idealWeight()+"kg.");
 	}
 }
