@@ -1,12 +1,15 @@
 package person;
+import java.util.Random;
 import java.util.Scanner; //for testing
 
 public class Person {
-	private String name;
-	private int age;
-	private int weight;
-	private int height; //i've defined the height to calculate the ideal weight
-	private String dni;
+	private String name = "defaultName";
+	private int age = 18;
+	private int weight = 70;
+	private int height = 180; //i've defined the height to calculate the ideal weight
+	private String dni = "12345678A";
+	private int mobileNum = 666555444;
+	private String address = "Streat 1, 2B";
 	
 	//constructors
 	//with no parameters
@@ -57,6 +60,21 @@ public class Person {
 	public void setDni(String dni) {
 		this.dni=dni;
 	}
+	//this is for the Agenda exercise
+	public int getMobileNum() {
+		return this.mobileNum;
+	}
+	public void setMobileNum(int mobileNum) {
+		this.mobileNum=mobileNum;
+	}
+	
+	public String getAddress() {
+		return this.address;
+	}
+	public void setAddress(String address) {
+		this.address=address;
+	}
+	
 	//it will return an ideal weight using a formula from internet
 	public int idealWeight() {
 		return height-100-((height-150)/4);
@@ -67,7 +85,10 @@ public class Person {
 	}
 	//this gives a default DNI value that will always be "12345678A"
 	public String dniByDefault() {
-		this.dni= "12345678A";
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random rnd = new Random();
+		char c = chars.charAt(rnd.nextInt(chars.length()));
+		this.dni= String.valueOf((int)((Math.random()*99999999)+1))+c;
 		return this.dni;
 	}
 	//this will return false if the age is lower than 18 or true if it's not
