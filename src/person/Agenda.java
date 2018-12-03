@@ -71,7 +71,7 @@ public class Agenda {
 				System.out.println("Press enter to continue...");
 				sc.nextLine();
 				break;
-			case 2:
+			case 2<:
 				
 			}
 		}
