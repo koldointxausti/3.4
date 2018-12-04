@@ -8,8 +8,6 @@ public class Person {
 	private int weight = 70;
 	private int height = 180; //i've defined the height to calculate the ideal weight
 	private String dni = "12345678A";
-	private int mobileNum = 666555444;
-	private String address = "Streat 1, 2B";
 	
 	//constructors
 	//with no parameters
@@ -59,20 +57,6 @@ public class Person {
 	}
 	public void setDni(String dni) {
 		this.dni=dni;
-	}
-	//this is for the Agenda exercise
-	public int getMobileNum() {
-		return this.mobileNum;
-	}
-	public void setMobileNum(int mobileNum) {
-		this.mobileNum=mobileNum;
-	}
-	
-	public String getAddress() {
-		return this.address;
-	}
-	public void setAddress(String address) {
-		this.address=address;
 	}
 	
 	//it will return an ideal weight using a formula from internet
