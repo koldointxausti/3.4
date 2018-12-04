@@ -201,6 +201,8 @@ public class Agenda {
 					if(name.compareTo(contacts.get(i).getName())==0) {
 						found=true;
 						contacts.remove(i);
+						address.remove(i);
+						telephoneNum.remove(i);
 						System.out.println("The information about "+name+" has been erased");
 						break;
 					}
