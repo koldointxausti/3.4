@@ -57,8 +57,8 @@ public class Agenda {
 		}
 		persons.add(newPerson);
 	}
-	public ArrayList getPersonsName() {
-		return persons;
+	public Person getPersons(int i) {
+		return persons.get(i);
 	}
 	
 	public void setTelephoneNum() {
@@ -76,8 +76,8 @@ public class Agenda {
 			}
 		}
 	}
-	public ArrayList telephoneNum() {
-		return telephoneNum;
+	public int getTelephoneNum(int i) {
+		return telephoneNum.get(i);
 	}
 	
 	public void setAddress() {
@@ -86,7 +86,18 @@ public class Agenda {
 		String adrs = sc.nextLine();
 		address.add(adrs);
 	}
-	public ArrayList getAddress() {
-		return address;
+	public String getAddress(int i) {
+		return address.get(i);
+	}
+	
+	public int searchPersonName() {
+		String name = sc.next();
+		for (int i = 0; i < persons.size(); i++) {
+			if (name.compareTo(persons.get(i).getName()) == 0) {
+				return i;
+			}
+		}
+		int notFound = -1;
+		return notFound;
 	}
 }
