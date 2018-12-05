@@ -25,6 +25,55 @@ public class Interface {
 				case 1:
 					System.out.println("*CREATE A NEW PERSON*");
 					x.setPersons();
+					
+					/*
+					 *Person newPerson = new Person();
+		System.out.println("Name:");
+		newPerson.setName(sc.next());
+		boolean flag = true;
+		while (flag) {
+			System.out.println("Age:");
+			if (sc.hasNextInt()) {
+				newPerson.setAge(sc.nextInt());
+				if (newPerson.getAge() > 0)
+					flag = false;
+				else
+					System.out.println("It has to be a positive number.");
+			} else
+				System.out.println("It has to be a number.");
+		}
+		System.out.println("DNI:");
+		flag = true;
+		while (flag) {
+			newPerson.setDni(sc.next());
+			if (newPerson.getDni().length() != 9) {
+				System.out.println("The DNI has to be 9 digits long. Try again:");
+			} else {
+				flag = false;
+			}
+		}
+		flag = true;
+		System.out.println("Weight:");
+		while (flag) {
+			if (sc.hasNextInt()) {
+				newPerson.setWeight(sc.nextInt());
+				flag = false;
+			} else {
+				System.out.println("You have to enter a number");
+			}
+		}
+		flag = true;
+		System.out.println("Height:");
+		while (flag) {
+			if (sc.hasNextInt()) {
+				newPerson.setHeight(sc.nextInt());
+				flag = false;
+			} else {
+				System.out.println("It has to be a number");
+			}
+		}
+					 */
+					
 					x.setTelephoneNum();
 					x.setAddress();
 					break;
