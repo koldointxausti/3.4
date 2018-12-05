@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Agenda {
-	private ArrayList<Person> persons = new ArrayList<Person>();
-	private ArrayList<Integer> telephoneNum = new ArrayList<Integer>();
-	private ArrayList<String> address = new ArrayList<String>();
+	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	
 	Scanner sc = new Scanner(System.in);
 
+	public void setContacts(ArrayList<Contact> _contacts) {
+		this.contacts = _contacts;
+	}
+	
+	public ArrayList<Contact> getContacts() {
+		return contacts;
+	}
+	
 	public void setPersons() {
 		Person newPerson = new Person();
 		System.out.println("Name:");
