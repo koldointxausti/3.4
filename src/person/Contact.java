@@ -2,28 +2,28 @@ package person;
 import java.util.ArrayList;
 
 public class Contact {
-	private ArrayList<Person> persons = new ArrayList<Person>();
-	private ArrayList<Integer> telephoneNum = new ArrayList<Integer>();
-	private ArrayList<String> address = new ArrayList<String>();
+	private Person person = new Person();
+	private int telephoneNum;
+	private String address;
 	
-	public void setPersons(ArrayList<Person> pers) {
-		this.persons=pers;
+	public void setPerson(Person person) {
+		this.person=person;
 	}
-	public ArrayList<Person> getPersons(){
-		return this.persons;
+	public Person getPerson(){
+		return this.person;
 	}
 	
-	public void setTelephoneNum(ArrayList<Integer> tfn) {
+	public void setTelephoneNum(int tfn) {
 		this.telephoneNum=tfn;
 	}
-	public ArrayList<Integer> getTelephoneNum(){
+	public int getTelephoneNum(){
 		return this.telephoneNum;
 	}
 	
-	public void setAddress(ArrayList<String> adrs) {
+	public void setAddress(String adrs) {
 		this.address=adrs;
 	}
-	public ArrayList<String> getAddress(){
+	public String getAddress(){
 		return this.address;
 	}
 }
