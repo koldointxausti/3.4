@@ -120,6 +120,8 @@ public class Interface {
 					boolean flag1 = true;
 					position = x.findContact(sc.next());
 					if (position >= 0) {
+						Contact contact = new Contact();
+						contact = x.getContact(position);
 						while (flag1) {
 							System.out.println("What do you want to change?");
 							System.out.println(" - 1. Name");
@@ -136,45 +138,46 @@ public class Interface {
 								case 0:
 									flag1 = false;
 									break;
-								case 1:
+								case 1: /*Change name*/
 									System.out.println("Your actual name is "+x.getContacts().get(position).getPerson().getName());
 									System.out.println("What's the name you want?");
-									x.getContacts().get(position).getPerson().setName(sc.next());
+									contact.getPerson().setName(sc.next());
+									x.modifyContact(contact, position);
 									System.out.println("Your name has been changed");
 									break;
-								case 2:
+								case 2:  /*Change age*/
 									System.out.println("Your actual age is "+x.getContacts().get(position).getPerson().getAge());
 									System.out.println("What's the age you want?");
 									boolean loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.getContacts().get(position).getPerson().setAge(sc.nextInt());
+											x.modifyContact(change, position, sc.nextInt());
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
 									}
 									System.out.println("Your age has been changed");
 									break;
-								case 3:
+								case 3: /*Change wieght*/
 									System.out.println("Your actual weight is "+x.getContacts().get(position).getPerson().getWeight());
 									System.out.println("What's the weight you want?");
 									loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.getContacts().get(position).getPerson().setWeight(sc.nextInt());
+											x.modifyContact(change, position, sc.nextInt());
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
 									}
 									System.out.println("Your weight has been changed");
 									break;
-								case 4:
+								case 4: /*Change height*/
 									System.out.println("Your actual height is "+x.getContacts().get(position).getPerson().getHeight());
 									System.out.println("What's the height you want?");
 									loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.getContacts().get(position).getPerson().setHeight(sc.nextInt());
+											x.modifyContact(change, position, sc.nextInt());
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
@@ -184,7 +187,7 @@ public class Interface {
 								case 5:
 									System.out.println("Your actual DNI is "+x.getContacts().get(position).getPerson().getDni());
 									System.out.println("What's the DNI you want?");
-									x.getContacts().get(position).getPerson().setDni(sc.next());
+									x.modifyContact(change, position, sc.next());
 									System.out.println("Your DNI has been changed");
 									break;
 								case 6:
@@ -195,7 +198,7 @@ public class Interface {
 										if(sc.hasNextInt()) {
 											int tfn = sc.nextInt();
 											if(Integer.toString(tfn).length()==9) {
-												x.getContacts().get(position).setTelephoneNum(tfn);
+												x.modifyContact(change, position, sc.nextInt());
 												loop=false;
 											}else
 												System.out.println("The number has to be 9 digits long");
@@ -208,7 +211,7 @@ public class Interface {
 									System.out.println("Your actual address is: "+x.getContacts().get(position).getAddress());
 									System.out.println("What's the address you want me to save?");
 									sc.nextLine();
-									x.getContacts().get(position).setAddress(sc.nextLine());
+									x.modifyContact(change, position, sc.nextLine());
 									break;
 								default:
 									System.out.println("Enter one of the options bellow:");
