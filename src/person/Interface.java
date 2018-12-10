@@ -1,9 +1,10 @@
 package person;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
+import classes.Agenda;
+import classes.Contact;
+import classes.Person;
 
 public class Interface {
 	public static void main(String[] args) {
@@ -21,11 +22,11 @@ public class Interface {
 			if (sc.hasNextInt()) {
 				int option = sc.nextInt();
 				switch (option) {
-				case 0:
+				case 0:/*Stop the program*/
 					System.out.println("The program has been stopped");
 					repeat = false;
 					break;
-				case 1:
+				case 1:/*Create a new contact*/
 					System.out.println("*CREATE A NEW CONTACT*");
 					Contact newContact = new Contact();
 					//ask for Person's class information
@@ -94,11 +95,11 @@ public class Interface {
 					//add this Contact to the ArrayList of class Agenda
 					x.addContact(newContact);
 					break;
-				case 2:
+				case 2:/*Show a name list of the already created contacts*/
 					x.listContacts();
 					System.out.println();
 					break;
-				case 3:
+				case 3:/*View the information of a contact*/
 					System.out.println("*VIEW A CONTACT*");
 					System.out.println("Whose information do you want? (Enter hers/his name)");
 					int position = x.findContact(sc.next());
@@ -114,7 +115,7 @@ public class Interface {
 						System.out.println("There's no person with that name created yet");
 					System.out.println();
 					break;
-				case 4:
+				case 4:/*Change the information of a contact*/
 					System.out.println("*MODIFY A CONTACT*");
 					System.out.println("Whose information do you want to change? (Enter hers/his name)");
 					boolean flag1 = true;
@@ -151,7 +152,7 @@ public class Interface {
 									boolean loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											contact.getPerson().setAge(sc.nextInt)
+											contact.getPerson().setAge(sc.nextInt());
 											x.modifyContact(contact,position);
 											loop=false;
 										}else
@@ -159,7 +160,7 @@ public class Interface {
 									}
 									System.out.println("Your age has been changed");
 									break;
-								case 3: /*Change wieght*/
+								case 3: /*Change weight*/
 									System.out.println("Your actual weight is "+x.getContacts().get(position).getPerson().getWeight());
 									System.out.println("What's the weight you want?");
 									loop=true;
@@ -187,14 +188,14 @@ public class Interface {
 									}
 									System.out.println("Your height has been changed");
 									break;
-								case 5:
+								case 5: /*Change DNI*/
 									System.out.println("Your actual DNI is "+x.getContacts().get(position).getPerson().getDni());
 									System.out.println("What's the DNI you want?");
 									contact.getPerson().setDni(sc.next());
 									x.modifyContact(contact, position);
 									System.out.println("Your DNI has been changed");
 									break;
-								case 6:
+								case 6:/*Change Telephone Number*/
 									System.out.println("Your actual telephone number is "+x.getContacts().get(position).getTelephoneNum());
 									System.out.println("What mobile number do you want?");
 									loop=true;
@@ -202,7 +203,7 @@ public class Interface {
 										if(sc.hasNextInt()) {
 											int tfn = sc.nextInt();
 											if(Integer.toString(tfn).length()==9) {
-												contact.getPerson().setTelephoneNum(sc.nextInt());
+												contact.setTelephoneNum(sc.nextInt());;
 												x.modifyContact(contact, position);
 												loop=false;
 											}else
@@ -212,13 +213,13 @@ public class Interface {
 									}
 									System.out.println("Your mobile number has been changed");
 									break;
-								case 7:
+								case 7:/*Change address*/
 									System.out.println("Your actual address is: "+x.getContacts().get(position).getAddress());
 									System.out.println("What's the address you want me to save?");
 									sc.nextLine();
-									x.modifyContact(change, position, sc.nextLine());
+									x.modifyContact(contact, position);
 									break;
-								default:
+								default:/*if the user doesn't enter an option we can use*/
 									System.out.println("Enter one of the options bellow:");
 									System.out.println();
 								}
@@ -232,7 +233,7 @@ public class Interface {
 						System.out.println("The name you entered is not created yet");
 					}
 					break;
-				case 5:
+				case 5:/*Delete the information of a contact*/
 					System.out.println("*DELETE A CONTACT*");
 					System.out.println("Who do you want to delete?");
 					position = x.findContact(sc.next());
