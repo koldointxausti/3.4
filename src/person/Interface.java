@@ -151,7 +151,8 @@ public class Interface {
 									boolean loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.modifyContact(change, position, sc.nextInt());
+											contact.getPerson().setAge(sc.nextInt)
+											x.modifyContact(contact,position);
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
@@ -164,7 +165,8 @@ public class Interface {
 									loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.modifyContact(change, position, sc.nextInt());
+											contact.getPerson().setWeight(sc.nextInt());
+											x.modifyContact(contact, position);
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
@@ -177,7 +179,8 @@ public class Interface {
 									loop=true;
 									while(loop) {
 										if(sc.hasNextInt()) {
-											x.modifyContact(change, position, sc.nextInt());
+											contact.getPerson().setHeight(sc.nextInt());
+											x.modifyContact(contact, position);
 											loop=false;
 										}else
 											System.out.println("It has to be a number");
@@ -187,7 +190,8 @@ public class Interface {
 								case 5:
 									System.out.println("Your actual DNI is "+x.getContacts().get(position).getPerson().getDni());
 									System.out.println("What's the DNI you want?");
-									x.modifyContact(change, position, sc.next());
+									contact.getPerson().setDni(sc.next());
+									x.modifyContact(contact, position);
 									System.out.println("Your DNI has been changed");
 									break;
 								case 6:
@@ -198,7 +202,8 @@ public class Interface {
 										if(sc.hasNextInt()) {
 											int tfn = sc.nextInt();
 											if(Integer.toString(tfn).length()==9) {
-												x.modifyContact(change, position, sc.nextInt());
+												contact.getPerson().setTelephoneNum(sc.nextInt());
+												x.modifyContact(contact, position);
 												loop=false;
 											}else
 												System.out.println("The number has to be 9 digits long");
