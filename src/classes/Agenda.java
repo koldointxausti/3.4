@@ -16,7 +16,7 @@ public class Agenda {
 	/**
 	 * @author koldo
 	 * This method adds objects to agenda's ArrayList
-	 * @param Contact class object
+	 * @param contact class object
 	 */
 	public void addContact(Contact _contact) {
 		this.contacts.add(_contact);
