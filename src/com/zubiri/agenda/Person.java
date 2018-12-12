@@ -1,4 +1,4 @@
-package classes;
+package com.zubiri.agenda;
 import java.util.Random;
 import java.util.Scanner; //for testing
 
