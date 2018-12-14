@@ -134,10 +134,12 @@ public class Agenda {
 	}
 	
 	public void orderContacts() {
-		for (int i = 0; i < contacts.size()-2; i++) {
+		Contact aux = new Contact();
+		for (int i = 0; i < contacts.size()-1; i++) {
 			if(contacts.get(i).getPerson().getName().compareTo(contacts.get(i + 1).getPerson().getName())>0) {
-				int aux = i + 1;
-				
+				aux=contacts.get(i);
+				contacts.set(i, contacts.get(i+1));
+				contacts.set(i+1, aux);
 			}
 		}
 	}

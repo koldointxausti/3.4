@@ -17,6 +17,8 @@ public class Interface {
 			System.out.println("[3] View an existing contact");
 			System.out.println("[4] Modify an existing contact");
 			System.out.println("[5] Delete an existing contact");
+			System.out.println("[6] Duplicate a contact");
+			System.out.println("[7] Favorites");
 			System.out.println("[0] Exit");
 			Scanner sc = new Scanner(System.in);
 			if (sc.hasNextInt()) {
@@ -94,6 +96,7 @@ public class Interface {
 					newContact.setAddress(sc.nextLine());
 					// add this Contact to the ArrayList of class Agenda
 					x.addContact(newContact);
+					x.orderContacts();
 					break;
 				case 2:/* Show a name list of the already created contacts */
 					x.listContacts();
@@ -254,6 +257,52 @@ public class Interface {
 						System.out.println("There's no person with that name created yet");
 					}
 					break;
+				case 6: /* Duplicate contacts */
+					System.out.println("Who do you want to copy?");
+					position = x.findContact(sc.next());
+					sc.nextLine();
+					System.out.println("How many times?");
+					int times = sc.nextInt();
+					x.duplicateContact(x.getContact(position), times);
+					break;
+				case 7: /* Favorites */
+					flag = true;
+					while (flag) {
+						System.out.println("*FAVORITES*");
+						System.out.println(" - 1. View Favorites-List");
+						System.out.println(" - 2. Add a contact to Favorites");
+						System.out.println(" - 3. Delete a contact from Favorites");
+						System.out.println(" - 0. Go back");
+						if (sc.hasNextInt()) {
+							int change = sc.nextInt();
+							switch (change) {
+							case 1: /* View Favorites-list */
+								if(x.getFavContacts().size()==0) 
+									System.out.println("There's no favorite contacts yet.");
+								else
+										x.listFavorites();
+								break;
+							case 2: /* Add someone to Favorites-list */
+								System.out.println("Who do you want to add?");
+								position = x.findContact(sc.next());
+								sc.nextLine();
+								x.addToFavorites(x.getContact(position));
+								break;
+							case 3: /* Delete someone from Favorites-list */
+								System.out.println("Who do you want to delete?");
+								position = x.findContact(sc.next());
+								sc.nextLine();
+								x.deleteFavorite(x.getContact(position));
+								break;
+							default:
+								System.out.println("Enter one of the options");
+								break;
+							case 0:/* go to the menu */
+								flag = false;
+								break;
+							}
+						}
+					}
 				}
 			} else {
 				System.out.println("Enter a valid number");
