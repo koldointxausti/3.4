@@ -2,9 +2,7 @@ package person;
 
 import java.util.Scanner;
 
-import com.zubiri.agenda.Agenda;
-import com.zubiri.agenda.Contact;
-import com.zubiri.agenda.Person;
+import com.zubiri.agenda.*;
 
 public class Interface {
 	public static void main(String[] args) {
@@ -17,8 +15,8 @@ public class Interface {
 			System.out.println("[3] View an existing contact");
 			System.out.println("[4] Modify an existing contact");
 			System.out.println("[5] Delete an existing contact");
-			System.out.println("[6] Duplicate a contact");
-			System.out.println("[7] Favorites");
+			System.out.println("[6] Favorites");
+			System.out.println("[7] Notes");
 			System.out.println("[0] Exit");
 			Scanner sc = new Scanner(System.in);
 			if (sc.hasNextInt()) {
@@ -114,6 +112,11 @@ public class Interface {
 						System.out.println("Height: " + x.getContacts().get(position).getPerson().getHeight());
 						System.out.println("Telephone number: " + x.getContacts().get(position).getTelephoneNum());
 						System.out.println("Address: " + x.getContacts().get(position).getAddress());
+						if(x.hasNote(position)) {
+							System.out.println();
+							System.out.println("NOTE: "+x.getContact(position).getNote().getText());
+						}
+							
 					} else
 						System.out.println("There's no person with that name created yet");
 					System.out.println();
@@ -147,6 +150,7 @@ public class Interface {
 											+ x.getContacts().get(position).getPerson().getName());
 									System.out.println("What's the name you want?");
 									contact.getPerson().setName(sc.next());
+									x.deleteContact(position);
 									x.modifyContact(contact, position);
 									System.out.println("Your name has been changed");
 									break;
@@ -158,6 +162,7 @@ public class Interface {
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setAge(sc.nextInt());
+											x.deleteContact(position);
 											x.modifyContact(contact, position);
 											loop = false;
 										} else
@@ -173,6 +178,7 @@ public class Interface {
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setWeight(sc.nextInt());
+											x.deleteContact(position);
 											x.modifyContact(contact, position);
 											loop = false;
 										} else
@@ -188,6 +194,7 @@ public class Interface {
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setHeight(sc.nextInt());
+											x.deleteContact(position);
 											x.modifyContact(contact, position);
 											loop = false;
 										} else
@@ -200,6 +207,7 @@ public class Interface {
 											"Your actual DNI is " + x.getContacts().get(position).getPerson().getDni());
 									System.out.println("What's the DNI you want?");
 									contact.getPerson().setDni(sc.next());
+									x.deleteContact(position);
 									x.modifyContact(contact, position);
 									System.out.println("Your DNI has been changed");
 									break;
@@ -213,7 +221,7 @@ public class Interface {
 											int tfn = sc.nextInt();
 											if (Integer.toString(tfn).length() == 9) {
 												contact.setTelephoneNum(sc.nextInt());
-												;
+												x.deleteContact(position);
 												x.modifyContact(contact, position);
 												loop = false;
 											} else
@@ -228,6 +236,7 @@ public class Interface {
 											"Your actual address is: " + x.getContacts().get(position).getAddress());
 									System.out.println("What's the address you want me to save?");
 									sc.nextLine();
+									x.deleteContact(position);
 									x.modifyContact(contact, position);
 									break;
 								default:/* if the user doesn't enter an option we can use */
@@ -257,15 +266,7 @@ public class Interface {
 						System.out.println("There's no person with that name created yet");
 					}
 					break;
-				case 6: /* Duplicate contacts */
-					System.out.println("Who do you want to copy?");
-					position = x.findContact(sc.next());
-					sc.nextLine();
-					System.out.println("How many times?");
-					int times = sc.nextInt();
-					x.duplicateContact(x.getContact(position), times);
-					break;
-				case 7: /* Favorites */
+				case 6: /* Favorites */
 					flag = true;
 					while (flag) {
 						System.out.println("*FAVORITES*");
@@ -277,10 +278,10 @@ public class Interface {
 							int change = sc.nextInt();
 							switch (change) {
 							case 1: /* View Favorites-list */
-								if(x.getFavContacts().size()==0) 
+								if (x.getFavContacts().size() == 0)
 									System.out.println("There's no favorite contacts yet.");
 								else
-										x.listFavorites();
+									x.listFavorites();
 								break;
 							case 2: /* Add someone to Favorites-list */
 								System.out.println("Who do you want to add?");
@@ -302,6 +303,49 @@ public class Interface {
 								break;
 							}
 						}
+					}
+					break;
+				case 7:
+					flag = true;
+					while (flag) {
+						System.out.println("*NOTES*");
+						System.out.println(" - 1. Add a note to a contact");
+						System.out.println(" - 2. Delete a note from a contact");
+						System.out.println(" - 0. Go back");
+						if (sc.hasNextInt()) {
+							int change = sc.nextInt();
+							switch (change) {
+							case 1:
+								System.out.println("Who are you adding a note to?");
+								position = x.findContact(sc.next());
+								sc.nextLine();
+								if (position >= 0) {
+									System.out.println("Note:");
+									Note note = new Note(sc.nextLine());
+									x.addNote(note, position);
+									System.out.println("Your note has been added.");
+								}else
+									System.out.println("There's no contact with that name");
+								break;
+							case 2:
+								System.out.println("Who are you deleting a note from?");
+								position = x.findContact(sc.next());
+								sc.nextLine();
+								if (position <= 0) {
+									x.deleteNote(position);;
+									System.out.println("Your note has been deleted.");
+								}else
+									System.out.println("There's no contact with that name");
+								break;
+							case 0:
+								flag = false;
+								break;
+							default:
+								System.out.println("Enter a valid option");
+								break;
+							}
+						}
+						break;
 					}
 				}
 			} else {

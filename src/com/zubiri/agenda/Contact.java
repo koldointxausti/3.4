@@ -1,10 +1,10 @@
 package com.zubiri.agenda;
-import java.util.ArrayList;
 
 public class Contact {
 	private Person person = new Person();
 	private int telephoneNum;
 	private String address;
+	private Note note = new Note("none");
 	
 	public void setPerson(Person person) {
 		this.person=person;
@@ -26,4 +26,12 @@ public class Contact {
 	public String getAddress(){
 		return this.address;
 	}
+	
+	public void setNote(Note note) {
+		this.note=note;
+	}
+	public Note getNote() {
+		return this.note;
+	}
+	
 }
