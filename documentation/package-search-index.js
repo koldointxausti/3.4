@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"classes"}]
+packageSearchIndex = [{"l":"com.zubiri.agenda"}]

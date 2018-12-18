@@ -8,6 +8,7 @@ public class Interface {
 	public static void main(String[] args) {
 		boolean repeat = true;
 		Agenda agenda = new Agenda();
+		Scanner sc = new Scanner(System.in);
 		while (repeat) {
 			System.out.println("*MENU*");
 			System.out.println("[1] Create a new contact");
@@ -18,7 +19,6 @@ public class Interface {
 			System.out.println("[6] Favorites");
 			System.out.println("[7] Notes");
 			System.out.println("[0] Exit");
-			Scanner sc = new Scanner(System.in);
 			if (sc.hasNextInt()) {
 				int option = sc.nextInt();
 				switch (option) {
@@ -353,6 +353,7 @@ public class Interface {
 				System.out.println("Enter a valid number");
 			}
 		}
+		sc.close();
 	}
 
 }

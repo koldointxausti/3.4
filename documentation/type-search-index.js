@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"classes","l":"Agenda"},{"p":"classes","l":"Contact"},{"p":"classes","l":"Person"}]
+typeSearchIndex = [{"p":"com.zubiri.agenda","l":"Agenda"},{"p":"com.zubiri.agenda","l":"Contact"},{"p":"com.zubiri.agenda","l":"Note"},{"p":"com.zubiri.agenda","l":"Person"}]
