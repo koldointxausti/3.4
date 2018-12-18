@@ -7,7 +7,7 @@ import com.zubiri.agenda.*;
 public class Interface {
 	public static void main(String[] args) {
 		boolean repeat = true;
-		Agenda x = new Agenda();
+		Agenda agenda = new Agenda();
 		while (repeat) {
 			System.out.println("*MENU*");
 			System.out.println("[1] Create a new contact");
@@ -74,7 +74,7 @@ public class Interface {
 
 					}
 					newContact.setPerson(info); // save this Person in a Contact
-					// add this information to de Contact:
+					// add this information to the Contact:
 					System.out.println("Mobile number:");
 					flag = true;
 					while (flag) {
@@ -93,30 +93,31 @@ public class Interface {
 					sc.nextLine();
 					newContact.setAddress(sc.nextLine());
 					// add this Contact to the ArrayList of class Agenda
-					x.addContact(newContact);
-					x.orderContacts();
+					agenda.addContact(newContact);
+					agenda.orderContacts();
 					break;
 				case 2:/* Show a name list of the already created contacts */
-					x.listContacts();
+					agenda.orderContacts();
+					agenda.listContacts();
 					System.out.println();
 					break;
 				case 3:/* View the information of a contact */
 					System.out.println("*VIEW A CONTACT*");
 					System.out.println("Whose information do you want? (Enter hers/his name)");
-					int position = x.findContact(sc.next());
+					int position = agenda.findContact(sc.next());
 					if (position >= 0) {
-						System.out.println("Name: " + x.getContacts().get(position).getPerson().getName());
-						System.out.println("Age: " + x.getContacts().get(position).getPerson().getAge());
-						System.out.println("Dni: " + x.getContacts().get(position).getPerson().getDni());
-						System.out.println("Weight: " + x.getContacts().get(position).getPerson().getWeight());
-						System.out.println("Height: " + x.getContacts().get(position).getPerson().getHeight());
-						System.out.println("Telephone number: " + x.getContacts().get(position).getTelephoneNum());
-						System.out.println("Address: " + x.getContacts().get(position).getAddress());
-						if(x.hasNote(position)) {
+						System.out.println("Name: " + agenda.getContacts().get(position).getPerson().getName());
+						System.out.println("Age: " + agenda.getContacts().get(position).getPerson().getAge());
+						System.out.println("Dni: " + agenda.getContacts().get(position).getPerson().getDni());
+						System.out.println("Weight: " + agenda.getContacts().get(position).getPerson().getWeight());
+						System.out.println("Height: " + agenda.getContacts().get(position).getPerson().getHeight());
+						System.out.println("Telephone number: " + agenda.getContacts().get(position).getTelephoneNum());
+						System.out.println("Address: " + agenda.getContacts().get(position).getAddress());
+						if (agenda.hasNote(position)) {
 							System.out.println();
-							System.out.println("NOTE: "+x.getContact(position).getNote().getText());
+							System.out.println("NOTE: " + agenda.getContact(position).getNote().getText());
 						}
-							
+
 					} else
 						System.out.println("There's no person with that name created yet");
 					System.out.println();
@@ -125,10 +126,10 @@ public class Interface {
 					System.out.println("*MODIFY A CONTACT*");
 					System.out.println("Whose information do you want to change? (Enter hers/his name)");
 					boolean flag1 = true;
-					position = x.findContact(sc.next());
+					position = agenda.findContact(sc.next());
 					if (position >= 0) {
 						Contact contact = new Contact();
-						contact = x.getContact(position);
+						contact = agenda.getContact(position);
 						while (flag1) {
 							System.out.println("What do you want to change?");
 							System.out.println(" - 1. Name");
@@ -147,23 +148,23 @@ public class Interface {
 									break;
 								case 1: /* Change name */
 									System.out.println("Your actual name is "
-											+ x.getContacts().get(position).getPerson().getName());
+											+ agenda.getContacts().get(position).getPerson().getName());
 									System.out.println("What's the name you want?");
 									contact.getPerson().setName(sc.next());
-									x.deleteContact(position);
-									x.modifyContact(contact, position);
+									agenda.deleteContact(position);
+									agenda.modifyContact(contact, position);
 									System.out.println("Your name has been changed");
 									break;
 								case 2: /* Change age */
-									System.out.println(
-											"Your actual age is " + x.getContacts().get(position).getPerson().getAge());
+									System.out.println("Your actual age is "
+											+ agenda.getContacts().get(position).getPerson().getAge());
 									System.out.println("What's the age you want?");
 									boolean loop = true;
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setAge(sc.nextInt());
-											x.deleteContact(position);
-											x.modifyContact(contact, position);
+											agenda.deleteContact(position);
+											agenda.modifyContact(contact, position);
 											loop = false;
 										} else
 											System.out.println("It has to be a number");
@@ -172,14 +173,14 @@ public class Interface {
 									break;
 								case 3: /* Change weight */
 									System.out.println("Your actual weight is "
-											+ x.getContacts().get(position).getPerson().getWeight());
+											+ agenda.getContacts().get(position).getPerson().getWeight());
 									System.out.println("What's the weight you want?");
 									loop = true;
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setWeight(sc.nextInt());
-											x.deleteContact(position);
-											x.modifyContact(contact, position);
+											agenda.deleteContact(position);
+											agenda.modifyContact(contact, position);
 											loop = false;
 										} else
 											System.out.println("It has to be a number");
@@ -188,14 +189,14 @@ public class Interface {
 									break;
 								case 4: /* Change height */
 									System.out.println("Your actual height is "
-											+ x.getContacts().get(position).getPerson().getHeight());
+											+ agenda.getContacts().get(position).getPerson().getHeight());
 									System.out.println("What's the height you want?");
 									loop = true;
 									while (loop) {
 										if (sc.hasNextInt()) {
 											contact.getPerson().setHeight(sc.nextInt());
-											x.deleteContact(position);
-											x.modifyContact(contact, position);
+											agenda.deleteContact(position);
+											agenda.modifyContact(contact, position);
 											loop = false;
 										} else
 											System.out.println("It has to be a number");
@@ -203,17 +204,17 @@ public class Interface {
 									System.out.println("Your height has been changed");
 									break;
 								case 5: /* Change DNI */
-									System.out.println(
-											"Your actual DNI is " + x.getContacts().get(position).getPerson().getDni());
+									System.out.println("Your actual DNI is "
+											+ agenda.getContacts().get(position).getPerson().getDni());
 									System.out.println("What's the DNI you want?");
 									contact.getPerson().setDni(sc.next());
-									x.deleteContact(position);
-									x.modifyContact(contact, position);
+									agenda.deleteContact(position);
+									agenda.modifyContact(contact, position);
 									System.out.println("Your DNI has been changed");
 									break;
 								case 6:/* Change Telephone Number */
 									System.out.println("Your actual telephone number is "
-											+ x.getContacts().get(position).getTelephoneNum());
+											+ agenda.getContacts().get(position).getTelephoneNum());
 									System.out.println("What mobile number do you want?");
 									loop = true;
 									while (loop) {
@@ -221,8 +222,8 @@ public class Interface {
 											int tfn = sc.nextInt();
 											if (Integer.toString(tfn).length() == 9) {
 												contact.setTelephoneNum(sc.nextInt());
-												x.deleteContact(position);
-												x.modifyContact(contact, position);
+												agenda.deleteContact(position);
+												agenda.modifyContact(contact, position);
 												loop = false;
 											} else
 												System.out.println("The number has to be 9 digits long");
@@ -232,12 +233,12 @@ public class Interface {
 									System.out.println("Your mobile number has been changed");
 									break;
 								case 7:/* Change address */
-									System.out.println(
-											"Your actual address is: " + x.getContacts().get(position).getAddress());
+									System.out.println("Your actual address is: "
+											+ agenda.getContacts().get(position).getAddress());
 									System.out.println("What's the address you want me to save?");
 									sc.nextLine();
-									x.deleteContact(position);
-									x.modifyContact(contact, position);
+									agenda.deleteContact(position);
+									agenda.modifyContact(contact, position);
 									break;
 								default:/* if the user doesn't enter an option we can use */
 									System.out.println("Enter one of the options bellow:");
@@ -256,11 +257,11 @@ public class Interface {
 				case 5:/* Delete the information of a contact */
 					System.out.println("*DELETE A CONTACT*");
 					System.out.println("Who do you want to delete?");
-					position = x.findContact(sc.next());
+					position = agenda.findContact(sc.next());
 					if (position >= 0) {
 						System.out.println("The information about "
-								+ x.getContacts().get(position).getPerson().getName() + " has been erased");
-						x.deleteContact(position);
+								+ agenda.getContacts().get(position).getPerson().getName() + " has been erased");
+						agenda.deleteContact(position);
 						break;
 					} else {
 						System.out.println("There's no person with that name created yet");
@@ -278,22 +279,22 @@ public class Interface {
 							int change = sc.nextInt();
 							switch (change) {
 							case 1: /* View Favorites-list */
-								if (x.getFavContacts().size() == 0)
+								if (agenda.getFavContacts().size() == 0)
 									System.out.println("There's no favorite contacts yet.");
 								else
-									x.listFavorites();
+									agenda.listFavorites();
 								break;
 							case 2: /* Add someone to Favorites-list */
 								System.out.println("Who do you want to add?");
-								position = x.findContact(sc.next());
+								position = agenda.findContact(sc.next());
 								sc.nextLine();
-								x.addToFavorites(x.getContact(position));
+								agenda.addToFavorites(agenda.getContact(position));
 								break;
 							case 3: /* Delete someone from Favorites-list */
 								System.out.println("Who do you want to delete?");
-								position = x.findContact(sc.next());
+								position = agenda.findContact(sc.next());
 								sc.nextLine();
-								x.deleteFavorite(x.getContact(position));
+								agenda.deleteFavorite(agenda.getContact(position));
 								break;
 							default:
 								System.out.println("Enter one of the options");
@@ -317,24 +318,24 @@ public class Interface {
 							switch (change) {
 							case 1:
 								System.out.println("Who are you adding a note to?");
-								position = x.findContact(sc.next());
+								position = agenda.findContact(sc.next());
 								sc.nextLine();
 								if (position >= 0) {
 									System.out.println("Note:");
 									Note note = new Note(sc.nextLine());
-									x.addNote(note, position);
+									agenda.addNote(note, position);
 									System.out.println("Your note has been added.");
-								}else
+								} else
 									System.out.println("There's no contact with that name");
 								break;
 							case 2:
 								System.out.println("Who are you deleting a note from?");
-								position = x.findContact(sc.next());
+								position = agenda.findContact(sc.next());
 								sc.nextLine();
-								if (position <= 0) {
-									x.deleteNote(position);;
+								if (position >= 0) {
+									agenda.deleteNote(position);
 									System.out.println("Your note has been deleted.");
-								}else
+								} else
 									System.out.println("There's no contact with that name");
 								break;
 							case 0:

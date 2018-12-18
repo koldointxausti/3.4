@@ -143,8 +143,8 @@ public class Agenda {
 	 */
 	public void orderContacts() {
 		Contact aux = new Contact();
-		int wrong = 0;
-		while(wrong<0) {
+		int wrong = 1;
+		while(wrong>0) {
 			wrong=0;
 			for (int i = 0; i < contacts.size() - 1; i++) {
 				if (contacts.get(i).getPerson().getName().compareTo(contacts.get(i + 1).getPerson().getName()) > 0) {
@@ -188,5 +188,27 @@ public class Agenda {
 			return true;
 		else
 			return false;
+	}
+	
+	/**
+	 * @author Koldo
+	 *         <p>
+	 *         Orders the list of favorite contacts by its order in the alphabet
+	 *         </p>
+	 */
+	public void orderFavContacts() {
+		Contact aux = new Contact();
+		int wrong = 1;
+		while(wrong>0) {
+			wrong=0;
+			for (int i = 0; i < favContacts.size() - 1; i++) {
+				if (favContacts.get(i).getPerson().getName().compareTo(favContacts.get(i + 1).getPerson().getName()) > 0) {
+					wrong++;
+					aux = favContacts.get(i);
+					favContacts.set(i, favContacts.get(i + 1));
+					favContacts.set(i + 1, aux);
+				}
+			}
+		}
 	}
 }
